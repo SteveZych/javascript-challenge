@@ -3,6 +3,10 @@ var tableData = data;
 
 // YOUR CODE HERE!
 
+//Select button and input 
+var button = d3.select("#filter-btn");
+var inputField = d3.select("datetime")
+
 //Function to filter by input date
 function filterByDate(date) {
     return date.datetime === intput;
