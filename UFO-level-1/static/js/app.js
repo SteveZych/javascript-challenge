@@ -1,29 +1,42 @@
 // from data.js
 var tableData = data;
 
-// YOUR CODE HERE!
-
-//Select button and input 
+//Select button and execute event handler
 var button = d3.select("#filter-btn");
-var inputField = d3.select("datetime")
+button.on("click", buttonClick);
 
-//Function to filter by input date
-function filterByDate(date) {
-    return date.datetime === intput;
-};
+//Code to execute on the button click
+function buttonClick(){
 
-// List of sightings to display
-var currentList = tableData.filter(filterByDate);
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
 
-// Use D3 to select table to input data
-var table = d3.select("#ufo-table");
+    // Select the input element and value
+    var inputElement = d3.select("#datetime");
+    var inputValue = inputElement.property("value");
 
-//Loop through each sighting using forEach and Object.entries
-tableData.forEach(function(ufo){
+    //Function to filter by input date
+    function filterByDate(tableData) {
+        return tableData.datetime === inputValue;
+    };
+
+    // List of sightings to display
+    var currentList = tableData.filter(filterByDate);
+
+    // Use D3 to select table to input data
+    var table = d3.select("#ufo-table");
+
+    //Loop through each sighting using forEach and Object.entries
+    currentList.forEach(function(ufo){
     console.log(ufo);
     table.append('tr');
     Object.entries(ufo).forEach(function([key,value]){
-        var cells = table.appen('td');
+        var cells = table.append('td');
         cells.text(value);
+        });
     });
-});
+};
+
+
+
+
