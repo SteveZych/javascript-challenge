@@ -12,16 +12,51 @@ function buttonClick(){
     d3.event.preventDefault();
 
     // Select the input element and value
-    var inputElement = d3.select("#datetime");
-    var inputValue = inputElement.property("value");
+    // For Date
+    var inputElementDate = d3.select("#datetime");
+    var dateInput = inputElementDate.property("value").toLowerCase();
+    // For City
+    var inputElementCity = d3.select("#city");
+    var cityInput = inputElementCity.property("value").toLowerCase();
+    // For State
+    var inputElementState = d3.select("#state");
+    var stateInput = inputElementState.property("value").toLowerCase();
 
-    //Function to filter by input date
-    function filterByDate(tableData) {
-        return tableData.datetime === inputValue;
+    inputList = [dateInput, cityInput, stateInput]
+    
+    inputDict = {
+        dateInput : datetime,
+        cityInput : city,
+        stateInput : state
+    };
+    // Function to go through list of inputs and filter only by values given
+
+    function filterInputList(tableData){
+        // Create a list of inputs given by user
+        newInputList = [];
+        inputList.forEach(input =>
+            if (input !== null || input !== ""){
+                newInputList.push(input);
+            };
+        );
+        // Compare list of given inputs to keys of dictionary to gain value if key is present and push value to new list
+        inputDictValue = [];
+        inputDictKeys = Object.keys(inputDict);
+        newInputList.forEach(input =>
+            if (inputDictKeys.includes(input)){
+                inputDictValue.push(inputDict[value])
+            };
+        );
+        // Create list for tableData with dictionary value
+        tableDataWithValues = []
+        inputDictValue.forEach(input =>
+            tableDataWithValues.push(tableData.input)
+        );
+        return tableDataWithValues
     };
 
     // List of sightings to display
-    var currentList = tableData.filter(filterByDate);
+    var currentList = tableData.filter(filterInputList);
 
     // Use D3 to select table to input data
     var table = d3.select("#ufo-table");
