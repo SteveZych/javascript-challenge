@@ -34,24 +34,24 @@ function buttonClick(){
     function filterInputList(tableData){
         // Create a list of inputs given by user
         newInputList = [];
-        inputList.forEach(input =>
+        inputList.forEach((input) => {
             if (input !== null || input !== ""){
                 newInputList.push(input);
             };
-        );
+        });
         // Compare list of given inputs to keys of dictionary to gain value if key is present and push value to new list
         inputDictValue = [];
         inputDictKeys = Object.keys(inputDict);
-        newInputList.forEach(input =>
+        newInputList.forEach((input) => {
             if (inputDictKeys.includes(input)){
                 inputDictValue.push(inputDict[value])
             };
-        );
+        });
         // Create list for tableData with dictionary value
         tableDataWithValues = []
-        inputDictValue.forEach(input =>
+        inputDictValue.forEach((input) => {
             tableDataWithValues.push(tableData.input)
-        );
+        });
         return tableDataWithValues
     };
 
